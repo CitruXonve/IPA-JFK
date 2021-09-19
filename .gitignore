@@ -115,6 +115,9 @@ dist
 # Parcel cache
 .parcel-cache/
 
+# Suppress Yarn warning
+package-lock.json
+
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 /build
