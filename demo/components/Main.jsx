@@ -1,14 +1,15 @@
-import React, { Container, Fragment } from "react";
-import { AppBar, Card, CardContent, CardHeader, Link, Toolbar, Typography } from "@mui/material";
+import React, { Component, Fragment } from "react";
+import { Container } from "reactstrap";
+import { AppBar, Card, CardContent, CardHeader, Link, Toolbar, Typography, Grid, Box, GlobalStyles } from "@mui/material";
+import { Copyright } from '@mui/icons-material';
 
-function Main() {
+const Main = () => {
   return (
     <Fragment>
       <AppBar
         position="static"
         color="default"
         elevation={0}
-      // sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
       >
         <Toolbar sx={{ flexWrap: 'wrap' }}>
           <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
@@ -17,7 +18,7 @@ function Main() {
           <nav>
             <Link
               variant="button"
-              color="GrayText.primary"
+              color="text.primary"
               href="https://github.com/b1f6c1c4/IPA-JFK"
               sx={{ my: 1, mx: 1.5 }}
             >
@@ -44,7 +45,7 @@ function Main() {
                   mb: 2,
                 }}
               >
-                <form action="#" style="display: none" id="frm">
+                {/* <form action="#" style="display: none" id="frm">
                   <input type="text" id="word" name="word" autofocus />
                   <input type="radio" id="unicode" name="format" value="unicode" checked /><label for="unicode">Unicode</label>
                   <input type="radio" id="latex" name="format" value="latex" /><label for="latex">LaTeX/tipa</label>
@@ -59,7 +60,7 @@ function Main() {
                     <input type="text" id="syllable" name="syllable" />
                     <input type="checkbox" id="phonetic" name="phonetic" checked /><label for="phonetic">Phonetic (narrow) transcription</label>
                   </div>
-                </form>
+                </form> */}
                 <ul id="results"></ul>
               </Box>
             </CardContent>

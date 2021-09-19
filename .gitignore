@@ -118,6 +118,9 @@ dist
 # Suppress Yarn warning
 package-lock.json
 
+# Yarn
+yarn.lock
+
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 /build
