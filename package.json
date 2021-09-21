@@ -36,11 +36,20 @@
   },
   "homepage": "https://github.com/b1f6c1c4/IPA-JFK#readme",
   "dependencies": {
+    "@emotion/react": "^11.4.1",
+    "@emotion/styled": "^11.3.0",
+    "@material-ui/core": "^4.12.3",
     "escape-string-regexp": "^4.0.0",
     "htmlencode": "0.0.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@parcel/transformer-sass": "2.0.0-rc.0",
     "eslint": "^7.23.0",
     "mkdirp": "^1.0.4",
     "parcel": "^2.0.0-rc.0",
