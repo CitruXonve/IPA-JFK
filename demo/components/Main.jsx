@@ -72,7 +72,7 @@ const Main = () => {
       <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            IPA-JFK
+            b1f6c1c4/IPA-JFK
           </Typography>
           <nav>
             <Link variant="button" color="textPrimary" href="https://github.com/b1f6c1c4/IPA-JFK" className={classes.link}>
@@ -83,7 +83,7 @@ const Main = () => {
       </AppBar>
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-          b1f6c1c4/IPA-JFK
+          IPA-JFK
         </Typography>
         <Typography variant="h6" align="center" color="textSecondary" component="p">
           IPA narrow transcription of English words in New York City accent
@@ -92,27 +92,10 @@ const Main = () => {
       <Container maxWidth="md" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           <Card>
-            <CardHeader title="Give me IPA NOW!" className={classes.cardHeader}/>
+            <CardHeader color="primary" title="Show Me IPA NOW!" className={classes.cardHeader}/>
             <CardContent>
               <div className={classes.cardPricing}>
                 <IPAForm format="unicode" outputPhonetic={true}/>
-                
-                {/* <form action="#" style="display: none" id="frm">
-                  <input type="text" id="word" name="word" autofocus />
-                  <input type="radio" id="unicode" name="format" value="unicode" checked /><label for="unicode">Unicode</label>
-                  <input type="radio" id="latex" name="format" value="latex" /><label for="latex">LaTeX/tipa</label>
-                  <input type="radio" id="raw" name="format" value="raw" /><label for="raw">JSON/Raw</label>
-                  <div>
-                    <summary>Advanced settings</summary>
-                    <label for="ph">Reference Phonemes</label>
-                    <input type="text" id="ph" name="ph" />
-                    <label for="ae">/&aelig;/-raising Hints</label>
-                    <input type="text" id="ae" name="ae" />
-                    <label for="ae">Syllabification Hints</label>
-                    <input type="text" id="syllable" name="syllable" />
-                    <input type="checkbox" id="phonetic" name="phonetic" checked /><label for="phonetic">Phonetic (narrow) transcription</label>
-                  </div>
-                </form> */}
               </div>
             </CardContent>
           </Card>
