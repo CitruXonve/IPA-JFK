@@ -1,20 +1,31 @@
-import React from "react";
-import { TextField, FormControl, RadioGroup, FormControlLabel, Radio, FormLabel, Checkbox } from "@material-ui/core";
+import React, { Fragment } from "react";
+import { TextField, FormControl, RadioGroup, FormControlLabel, Radio, FormLabel, Checkbox, FormLabel, FormGroup, Switch, FormHelperText, IOS } from "@material-ui/core";
 import { Grid, Typography, makeStyles } from "@material-ui/core";
+import { Check } from "@material-ui/icons";
 
 class IPAForm extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
       format: props.format,
-      isPhonetic: props.outputPhonetic
+      isPhonetic: props.outputPhonetic,
+      showAdv: props.showAdv
     };
-    this.updateFunc = require("../func");
-    this.generateResult = (format) => {
+    this.func = require("../func");
+    this.generateResult = (format, phonetic) => {
       console.log(this.state);
-      this.updateFunc.default(format && typeof(format) === 'string' ? format : this.state.format
+      this.func.updateByOption(
+        typeof(format) === 'string' ? format : this.state.format,
+        typeof(phonetic) === 'boolean' ? phonetic : this.state.isPhonetic
       );
     };
+  }
+
+  handleToggleAdv = (event) => {
+    this.setState({
+      ...this.state,
+      [event.target.name]: event.target.checked
+    });
   }
 
   handleWordChange = (event) => {
@@ -27,12 +38,12 @@ class IPAForm extends React.Component {
 
     if (formatType && typeof(formatType) === 'string') {
       this.setState({
-        format: formatType,
-        isPhonetic: this.state.isPhonetic
+        ...this.state,
+        format: formatType
       });
       // this.state.format = formatType;
       // this.forceUpdate();
-      this.generateResult(formatType);
+      this.generateResult(formatType, undefined);
     }
     else {
       this.generateResult();
@@ -42,13 +53,43 @@ class IPAForm extends React.Component {
   handlePhoneticChange = (event) => {
     const checked = event.target.checked;
     console.log(checked);
+
     this.setState({
-      format: this.state.format,
+      ...this.state,
       isPhonetic: checked
-    })
+    });
     // this.state.isPhonetic = checked;
     // this.forceUpdate();
     this.generateResult(undefined, checked);
+  }
+
+  Advanced = () => {
+    return (
+      <Fragment>
+
+        <Grid container spacing={2}>
+          <Grid item>
+            <FormControlLabel 
+              control={
+                <Checkbox name="phonetic" id="_phonetic" checked={this.state.isPhonetic} onChange={this.handlePhoneticChange} />
+              }
+              label="Phonetic (narrow) transcription" 
+            />
+          </Grid>
+          <Grid item sm={6}>
+            <TextField name="ph" id="_ph" label="Reference Phonemes" variant="outlined" color="secondary" fullWidth/>
+          </Grid>
+          <Grid item sm={6}>
+            <TextField name="ae" id="_ae" label="/&aelig;/-raising Hints" variant="outlined" color="secondary" fullWidth>
+              <span>/&aelig;/-raising Hints</span>
+            </TextField>
+          </Grid>
+          <Grid item sm={12}>
+            <TextField name="syllable" id="_syllable" label="Syllabification Hints" color="secondary" variant="outlined" fullWidth/>
+          </Grid>
+        </Grid>
+      </Fragment>
+    );
   }
 
 // const IPAForm = () => {
@@ -77,12 +118,13 @@ class IPAForm extends React.Component {
       <React.Fragment>
         <form id="_frm" className={classes.form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={7}>
+            <Grid item xs={12} sm={6}>
               <TextField
                 name="word"
                 id="_word"
                 label="Enter any word"
                 variant="outlined"
+                color="secondary"
                 required
                 fullWidth
                 autoFocus
@@ -95,38 +137,22 @@ class IPAForm extends React.Component {
                   <FormControlLabel id="_raw" value="raw" control={<Radio />} label="JSON/Raw" />
                 </RadioGroup>
               </FormControl>
-              
+              <FormControlLabel
+                control={<Switch name="showAdv" color="secondary" checked={this.state.showAdv} onChange={this.handleToggleAdv}/>}
+                label="Advanced Settings"
+              />
+              {this.state.showAdv ? <this.Advanced /> : null}
             </Grid>
-            <Grid item xs={12} sm={5}>
+            
+            {/* <Grid item sm={12} sm={6}>
+            </Grid> */}
+            <Grid item xs={12} sm={6}>
               <FormLabel component="legend">Result(s)</FormLabel>
               <Typography variant="h6" color="textPrimary" component="div">
                 <ul id="_results" className={classes.results}></ul>
               </Typography>
             </Grid>
-            <Grid item sm={12}>
-              <Typography variant="h5" color="textPrimary" component="p">
-                Advanced
-              </Typography>
-            </Grid>
-            <Grid item sm={12}>
-              <FormControlLabel 
-                control={
-                  <Checkbox name="phonetic" id="_phonetic" checked={this.state.isPhonetic} onChange={this.handlePhoneticChange} />
-                }
-                label="Phonetic (narrow) transcription" 
-              />
-            </Grid>
-            <Grid item sm={12} sm={4}>
-              <TextField name="ph" id="_ph" label="Reference Phonemes" variant="outlined" fullWidth/>
-            </Grid>
-            <Grid item sm={12} sm={4}>
-              <TextField name="ae" id="_ae" label="/&aelig;/-raising Hints" variant="outlined" fullWidth/>
-            </Grid>
-            <Grid item sm={12} sm={4}>
-              <TextField name="syllable" id="_syllable" label="Phonetic (narrow) transcription" variant="outlined" fullWidth/>
-            </Grid>
           </Grid>
-          
         </form>
       </React.Fragment>
     );

@@ -1,7 +1,8 @@
 import React from "react";
 import { Container } from "@material-ui/core";
-import { AppBar, Card, CardContent, CardHeader, CssBaseline, Link, Toolbar, Typography, Grid, Box, makeStyles } from "@material-ui/core";
-// import { Copyright } from '@mui/icons-material';
+import { AppBar, Card, CardContent, CardHeader, CssBaseline, Link, Toolbar, Typography, Grid, Box, Button, makeStyles } from "@material-ui/core";
+import { pink } from "@material-ui/core/colors";
+import { Copyright } from "@material-ui/icons";
 import IPAForm from "./IPA-Form";
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundColor: pink[500]
   },
   toolbar: {
     flexWrap: 'wrap',
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[700],
+      theme.palette.type === 'light' ? pink[200] : pink[700],
   },
   cardPricing: {
     display: 'flex',
@@ -49,10 +51,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Copyright = () => {
+const CopyrightSection = () => {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © 2020-'}
+      {'Copyright '}<Copyright fontSize="inherit"/>{' 2020-'}
       {new Date().getFullYear()}
       {' '}
       <Link color="inherit">
@@ -69,13 +71,13 @@ const Main = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="default" elevation={0} className={classes.appBar}>
+      <AppBar position="static" display={{xs: "none", sm: "block"}} color="primary" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             b1f6c1c4/IPA-JFK
           </Typography>
           <nav>
-            <Link variant="button" color="textPrimary" href="https://github.com/b1f6c1c4/IPA-JFK" className={classes.link}>
+            <Link variant="button" color="inherit" href="https://github.com/b1f6c1c4/IPA-JFK" className={classes.link} target="_blank" rel="noopener">
               Github Repo
             </Link>
           </nav>
@@ -89,13 +91,13 @@ const Main = () => {
           IPA narrow transcription of English words in New York City accent
         </Typography>
       </Container>
-      <Container maxWidth="md" component="main">
+      <Container maxWidth="sm" component="main">
         <Grid container spacing={5} alignItems="flex-end">
           <Card>
-            <CardHeader color="primary" title="Show Me IPA NOW!" className={classes.cardHeader}/>
+            <CardHeader title="Show Me IPA NOW!" className={classes.cardHeader}/>
             <CardContent>
               <div className={classes.cardPricing}>
-                <IPAForm format="unicode" outputPhonetic={true}/>
+                <IPAForm format="unicode" outputPhonetic={true} showAdv={false}/>
               </div>
             </CardContent>
           </Card>
@@ -116,7 +118,7 @@ const Main = () => {
           </Grid>
         </Grid>
         <Box mt={2}>
-          <Copyright />
+          <CopyrightSection />
         </Box>
       </Container>
     </React.Fragment>

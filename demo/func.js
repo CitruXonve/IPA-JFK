@@ -1,15 +1,16 @@
 const db = require('../db');
 
-export default function updateByOption(format) {
+export function updateByOption(format, phonemic) {
     document.getElementById('_results').innerHTML = '';
     try {
         const word = document.getElementById('_word').value || '';
-        const ref = document.getElementById('_ph').value;
-        const aeHint = document.getElementById('_ae').value;
-        const syllableHint = document.getElementById('_syllable').value;
+        const ref = document.getElementById('_ph') ? document.getElementById('_ph').value : '';
+        const aeHint = document.getElementById('_ae') ? document.getElementById('_ae').value : '';
+        const syllableHint = document.getElementById('_syllable') ? document.getElementById('_syllable').value : '';
         const phss = ref ? [ref] : db.query(word);
+        phonemic = !phonemic
         for (let phs of phss) {
-            const phonemic = !document.getElementById('_phonetic').checked;
+            // const phonemic = !document.getElementById('_phonetic').checked;
             const ir = db.process(phs, word, phonemic, {
                 aeHint,
                 syllableHint

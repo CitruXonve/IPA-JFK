@@ -118,3 +118,6 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 /build
+
+# Mac OS
+.DS_Store

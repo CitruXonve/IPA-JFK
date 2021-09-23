@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from './components/Main';
+import * as classes from './scss/app.scss';
 
 const App = () => {
   return (  
@@ -10,6 +11,7 @@ const App = () => {
   )
 }
 
+document.body.className = classes.body;
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // hot reloading. It works by replacing a module of the application 
