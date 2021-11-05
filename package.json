@@ -11,7 +11,7 @@
     "lint": "eslint index.js db.js src/",
     "start": "./bin/jfk.js",
     "demo": "parcel demo/index.html",
-    "build": "parcel build demo/index.html"
+    "build": "parcel build --no-content-hash demo/index.html"
   },
   "targets": {
     "main": false
