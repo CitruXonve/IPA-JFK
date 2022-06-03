@@ -272,8 +272,8 @@ function rPhoneme(phs) {
       res.push(p.stress ? p : { ...p, isVowel: false, weak: undefined, pho: 'r', phono: 'nucleus' });
       continue;
     }
-    // Case 1: @r + @r
     if (!p.stress && !phs[pi + 1].stress && phs[pi + 1].phoneme === 'ER') {
+      // Case 1: @r + @r
       let t;
       if (!pi) {
         t = undefined;
@@ -291,21 +291,19 @@ function rPhoneme(phs) {
         t = phs[pi - 1].phoneme === 'T' ? 1 : 2;
       }
       if (!t) {
-        console.error('Warning: cannot determine ER in', int.map((n) => n.phoneme).join(' '));
+        console.error('Warning: cannot determine ER in', phs.map((n) => n.phoneme).join(' '));
         t = 1;
       }
       res.push(t >= 2 ? p : { ...p, isVowel: false, weak: undefined, pho: 'r', phono: 'nucleus' });
       res.push(t <= 2 ? phs[pi + 1] : { ...phs[pi + 1], isVowel: false, weak: undefined, pho: 'r', phono: 'nucleus' });
       pi++;
-    }
-    // Case 2: 3r + @r
-    else if (p.stress && !phs[pi + 1].stress && phs[pi + 1].phoneme === 'ER') {
+    } else if (p.stress && !phs[pi + 1].stress && phs[pi + 1].phoneme === 'ER') {
+      // Case 2: 3r + @r
       res.push(p);
       res.push({ ...phs[pi + 1], isVowel: false, weak: undefined, pho: 'r', phono: 'nucleus' });
       pi++;
-    }
-    // Case 3: 3r + V, @r + V
-    else {
+    } else {
+      // Case 3: 3r + V, @r + V
       res.push(p);
       res.push({ isVowel: false, pho: 'r', phono: 'onset', stress: phs[pi + 1].stress, short: true });
     }
