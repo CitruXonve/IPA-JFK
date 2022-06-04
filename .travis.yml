@@ -1,0 +1,20 @@
+# Deploy ipa-jfk tool using parcel
+
+language: node_js
+node_js:
+- "17.5"
+
+branches:
+  only:
+  - master
+
+install:
+- npm install
+
+before_script:
+- npm run prepare
+- mkdir dist
+- echo "ipa.citruxonve.net" > dist/CNAME
+
+script: 
+- npm run build
