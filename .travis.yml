@@ -1,8 +1,17 @@
 # Deploy ipa-jfk tool using parcel
 
+dist: xenial
 language: node_js
+
 node_js:
 - "17.5"
+
+jobs:
+  include:
+    - language: python
+      python: 3.8
+      script:
+      - python -c "print('Hi from Python3!')"
 
 branches:
   only:
