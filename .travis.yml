@@ -1,0 +1,37 @@
+# Deploy ipa-jfk tool using parcel
+
+dist: xenial
+language: node_js
+
+node_js:
+- "17.5"
+
+jobs:
+  include:
+    - language: python
+      python: 3.8
+      script:
+      - python -c "print('Hi from Python3!')"
+
+branches:
+  only:
+  - master
+
+install:
+- npm install
+
+before_script:
+- npm run prepare
+- mkdir dist
+- echo "ipa.citruxonve.net" > dist/CNAME
+
+script: 
+- npm run build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep_history: true
+  on:
+    branch: main

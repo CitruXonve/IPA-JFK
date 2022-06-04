@@ -1,0 +1,29 @@
+{
+    "name": "b1f6c1c4/IPA-JFK",
+    "description": "Chrome extension version of b1f6c1c4/IPA-JFK",
+    "version": "1.0",
+    "manifest_version": 3,
+
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Show Me IPA NOW!",
+        "default_icon": {
+            "16": "icon.png",
+            "32": "icon.png",
+            "48": "icon.png",
+            "128": "icon.png"
+        }
+    },
+    "icons": {
+        "16": "icon.png",
+        "32": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+
+    "content_scripts": [{
+        "js": ["index.html"],
+        "matches": ["<all_urls>"]
+    }],
+    "permissions": ["tabs"]
+}

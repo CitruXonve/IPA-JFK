@@ -151,21 +151,6 @@ function tensing(phs, word, aeHint) {
 
 const nasalPhonemes = ['M', 'N', 'NG'];
 
-function nasalize(phs) {
-  if (!phs) return phs;
-  const res = [];
-  for (let pi = 0; pi < phs.length; pi++) {
-    const p = phs[pi];
-    if (p.isVowel) {
-      const nasalized = p.isVowel && pi < phs.length - 1 && nasalPhonemes.includes(phs[pi + 1].phoneme);
-      res.push({ ...p, nasalized });
-    } else {
-      res.push(p);
-    }
-  }
-  return res;
-}
-
 function nasalizeAndLengthen(phs) {
   if (!phs) return phs;
   const res = [];
