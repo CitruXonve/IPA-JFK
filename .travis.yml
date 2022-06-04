@@ -9,8 +9,8 @@ branches:
   - master
 
 before_install:
-- sudo apt-get update
-- sudo apt-get install python3
+- sudo apt update
+- sudo apt install python3.7
 
 install:
 - npm install
